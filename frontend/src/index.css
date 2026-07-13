@@ -12,8 +12,6 @@
     --font-body: 'Lora', system-ui, sans-serif;
     --font-sans: var(--font-body);
 
-    /* Reproduces the prototype's --space-1..8 scale exactly: p-1 = 4.6px,
-       p-4 = 18.4px, p-8 = 36.8px, since every step is a clean multiple. */
     --spacing: 4.6px;
 
     --radius-sm: 2px;
@@ -56,10 +54,6 @@
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
 
-    /* Book Tracker brand tokens, ported from the HTML prototype.
-       Declared directly (no light/dark indirection needed — the prototype
-       has no dark mode) so Tailwind generates bg-bg, text-accent-2,
-       border-neutral-400, etc. utilities from them. */
     --color-bg: #f3f2f2;
     --color-surface: #eae9e9;
     --color-text: #201f1d;
@@ -102,10 +96,6 @@
 }
 
 :root {
-    /* shadcn semantic tokens — redirected to Book Tracker's own palette.
-       --accent doubles as the prototype's single brand accent (used for
-       both CTAs and selected/highlighted states, exactly like the
-       prototype itself does), so --primary simply aliases it. */
     --background: var(--color-bg);
     --foreground: var(--color-text);
     --border: var(--color-divider);
@@ -141,9 +131,6 @@
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
 
-    /* Book Tracker tokens with no Tailwind-namespace equivalent — kept as
-       plain variables so the ported component classes below can reference
-       them exactly as the prototype does (var(--space-3), etc.). */
     --font-heading-weight: 600;
     --space-1: 4.6px;
     --space-2: 9.2px;
@@ -153,8 +140,6 @@
     --space-8: 36.8px;
 }
 
-/* Dark mode is not part of this project's scope — kept only because shadcn
-   generated it by default. Nothing switches `.dark` on anywhere. */
 .dark {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
@@ -200,7 +185,6 @@
         @apply font-sans;
     }
 
-    /* Book Tracker base element styles, ported from the HTML prototype */
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--font-heading);
         font-weight: var(--font-heading-weight);
@@ -227,7 +211,7 @@
         margin-top: var(--space-1);
         color: color-mix(in srgb, var(--color-text) 55%, transparent);
     }
-    .text-muted {
+    .text-subtle {
         color: color-mix(in srgb, var(--color-text) 55%, transparent);
     }
     :focus { outline: none; }
@@ -244,7 +228,6 @@
 }
 
 @layer components {
-    /* Book cover image treatment */
     .plate {
         filter: sepia(0.22) saturate(0.82) contrast(1.05);
         box-sizing: border-box;
@@ -252,7 +235,6 @@
         outline: 1px solid var(--color-divider);
     }
 
-    /* Rules */
     .hr {
         height: 1px;
         border: 0;
@@ -260,7 +242,6 @@
         background: var(--color-divider);
     }
 
-    /* Buttons */
     .btn {
         display: inline-flex;
         align-items: center;
@@ -292,7 +273,6 @@
     .btn-icon { width: 34px; height: 34px; padding: 0; }
     .btn-block { width: 100%; margin-top: var(--space-2); }
 
-    /* Forms */
     .field > label {
         display: block;
         font-size: 12px;
@@ -380,7 +360,6 @@
         outline-offset: -2px;
     }
 
-    /* Cards */
     .card {
         display: flex;
         flex-direction: column;
@@ -414,7 +393,6 @@
     .elev-md { box-shadow: var(--shadow-md); }
     .elev-lg { box-shadow: var(--shadow-lg); }
 
-    /* Tags */
     .tag {
         display: inline-flex;
         align-items: center;
@@ -428,7 +406,6 @@
     .tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
     .tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
 
-    /* Navigation */
     .nav {
         display: flex;
         align-items: center;
@@ -445,7 +422,6 @@
     .nav a { color: inherit; text-decoration: none; font-size: 14px; }
     .nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
 
-    /* Tables */
     .table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .table th {
         text-align: left;
@@ -462,7 +438,6 @@
     }
     .table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 4%, transparent); }
 
-    /* Dialog */
     .dialog-backdrop {
         position: fixed;
         inset: 0;

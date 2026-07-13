@@ -77,7 +77,7 @@ export function DashboardPage() {
               <Link
                 key={book.id}
                 to={`/library/${book.id}`}
-                className="border-divider text-text flex cursor-pointer items-center gap-3 border-b py-2 no-underline"
+                className="border-divider text-text flex h-14 cursor-pointer items-center gap-3 border-b no-underline"
               >
                 <BookCover
                   initial={initialFor(book.title)}

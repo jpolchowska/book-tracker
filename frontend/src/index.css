@@ -1,10 +1,1 @@
-/* Minimal reset. Full design system (colors, fonts, component classes)
-   is ported from the HTML prototype in Step 3, alongside Tailwind. */
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
+@import "tailwindcss";

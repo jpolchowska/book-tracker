@@ -1,14 +1,25 @@
-import { Link, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 import { ChevronLeft, Pencil, Trash2 } from 'lucide-react'
 import { BookCover } from '@/components/books/BookCover'
 import { StatusTag } from '@/components/books/StatusTag'
 import { StarRating } from '@/components/books/StarRating'
-import { MOCK_BOOKS } from '@/data/mock-books'
 import { coverColorFor, formatDate, initialFor } from '@/lib/book-utils'
+import { useBookStore } from '@/stores/book-store'
+import { useBookFormStore } from '@/stores/book-form-store'
 
 export function BookDetailsPage() {
   const { id } = useParams<{ id: string }>()
-  const book = MOCK_BOOKS.find((b) => b.id === Number(id))
+  const navigate = useNavigate()
+  const books = useBookStore((s) => s.books)
+  const deleteBook = useBookStore((s) => s.deleteBook)
+  const openForEdit = useBookFormStore((s) => s.openForEdit)
+  const book = books.find((b) => b.id === Number(id))
+
+  const handleDelete = () => {
+    if (!book) return
+    deleteBook(book.id)
+    navigate('/library')
+  }
 
   if (!book) {
     return (
@@ -38,11 +49,15 @@ export function BookDetailsPage() {
             textClassName="text-7xl"
           />
           <div className="flex flex-col gap-2">
-            <button type="button" className="btn btn-primary btn-block">
+            <button
+              type="button"
+              className="btn btn-primary btn-block"
+              onClick={() => openForEdit(book.id)}
+            >
               <Pencil size={14} />
               Edit
             </button>
-            <button type="button" className="btn btn-secondary btn-block">
+            <button type="button" className="btn btn-secondary btn-block" onClick={handleDelete}>
               <Trash2 size={14} />
               Delete
             </button>

@@ -4,11 +4,11 @@ import { cn } from '@/lib/utils'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { BookCover } from '@/components/books/BookCover'
 import { StatusTag } from '@/components/books/StatusTag'
-import { MOCK_BOOKS } from '@/data/mock-books'
 import { coverColorFor, initialFor } from '@/lib/book-utils'
+import { useBookStore } from '@/stores/book-store'
 
 export function DashboardPage() {
-  const books = MOCK_BOOKS
+  const books = useBookStore((s) => s.books)
 
   const total = books.length
   const reading = books.filter((b) => b.status === 'reading').length

@@ -5,15 +5,17 @@ import { PageHeader } from '@/components/layout/PageHeader'
 import { BookCover } from '@/components/books/BookCover'
 import { StatusTag } from '@/components/books/StatusTag'
 import { StarRating } from '@/components/books/StarRating'
-import { MOCK_BOOKS } from '@/data/mock-books'
 import { coverColorFor, initialFor } from '@/lib/book-utils'
+import { useBookStore } from '@/stores/book-store'
+import { useBookFormStore } from '@/stores/book-form-store'
 
 type ViewMode = 'cards' | 'table'
 
 export function LibraryPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('cards')
   const navigate = useNavigate()
-  const books = MOCK_BOOKS
+  const books = useBookStore((s) => s.books)
+  const openForCreate = useBookFormStore((s) => s.openForCreate)
 
   return (
     <div>
@@ -44,7 +46,7 @@ export function LibraryPage() {
                 Table
               </label>
             </div>
-            <button type="button" className="btn btn-primary">
+            <button type="button" className="btn btn-primary" onClick={openForCreate}>
               <Plus size={14} />
               Add book
             </button>

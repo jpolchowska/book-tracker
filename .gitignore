@@ -26,6 +26,7 @@ HELP.md
 *.iml
 *.iws
 .vscode/
+.metals/
 
 ### Logs ###
 *.log
